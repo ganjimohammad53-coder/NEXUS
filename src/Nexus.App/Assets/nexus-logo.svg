@@ -1,0 +1,6 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="120" height="120" viewBox="0 0 120 120" role="img" aria-label="NEXUS AI connected-node N logo">
+<defs><linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#A78BFA"/><stop offset="1" stop-color="#5B21B6"/></linearGradient></defs>
+<rect x="4" y="4" width="112" height="112" rx="28" fill="url(#g)"/>
+<path d="M36 84V36L84 84V36" fill="none" stroke="#0A0A0F" stroke-width="9" stroke-linecap="round" stroke-linejoin="round"/>
+<circle cx="36" cy="36" r="9" fill="#FFFFFF"/><circle cx="36" cy="84" r="9" fill="#0A0A0F"/><circle cx="84" cy="84" r="9" fill="#FFFFFF"/><circle cx="84" cy="36" r="9" fill="#0A0A0F"/>
+</svg>

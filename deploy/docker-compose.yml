@@ -1,0 +1,40 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: nexus
+      POSTGRES_USER: nexus
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:?Set POSTGRES_PASSWORD in deploy/.env}
+    volumes:
+      - nexus_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U nexus -d nexus"]
+      interval: 5s
+      timeout: 3s
+      retries: 20
+    networks: [nexus-private]
+  server:
+    build:
+      context: ..
+      dockerfile: src/Nexus.Server/Dockerfile
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    environment:
+      ASPNETCORE_ENVIRONMENT: Production
+      ASPNETCORE_URLS: http://+:8080
+      NEXUS_DATABASE_URL: Host=postgres;Port=5432;Database=nexus;Username=nexus;Password=${POSTGRES_PASSWORD};Pooling=true;Maximum Pool Size=200;Timeout=15;Command Timeout=30
+      NEXUS_ADMIN_EMAIL: ${NEXUS_ADMIN_EMAIL:?Set NEXUS_ADMIN_EMAIL in deploy/.env}
+      NEXUS_ADMIN_PASSWORD: ${NEXUS_ADMIN_PASSWORD:?Set NEXUS_ADMIN_PASSWORD in deploy/.env}
+      NEXUS_AUTH_RATE_PER_MINUTE: ${NEXUS_AUTH_RATE_PER_MINUTE:-60}
+      NEXUS_GLOBAL_RATE_PER_MINUTE: ${NEXUS_GLOBAL_RATE_PER_MINUTE:-100000}
+    ports:
+      - "127.0.0.1:8080:8080"
+    networks: [nexus-private]
+networks:
+  nexus-private:
+    driver: bridge
+volumes:
+  nexus_pgdata:

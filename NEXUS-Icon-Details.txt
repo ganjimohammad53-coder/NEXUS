@@ -1,0 +1,670 @@
+﻿
+  src\Nexus.App\MainWindow.axaml.cs:198:    {
+  src\Nexus.App\MainWindow.axaml.cs:199:        var intro = new StackPanel { Spacing = 6 };
+> src\Nexus.App\MainWindow.axaml.cs:200:        intro.Children.Add(new TextBlock { Text = "NEXUS / AI STUDIO", 
+FontSize = 10, FontWeight = FontWeight.Bold, Foreground = Brush(AccentHex()), LetterSpacing = 2 });
+> src\Nexus.App\MainWindow.axaml.cs:201:        intro.Children.Add(new TextBlock { Text = "Chat that actually 
+sends.", FontSize = 28, FontWeight = FontWeight.Bold, Foreground = Brush("#F5F5FA") });
+> src\Nexus.App\MainWindow.axaml.cs:202:        intro.Children.Add(new TextBlock { Text = "Local Ollama connection 
+only. No prompt is sent to an online provider.", FontSize = 12, Foreground = Brush("#A6A8BD"), TextWrapping = 
+TextWrapping.Wrap });
+  src\Nexus.App\MainWindow.axaml.cs:203:        PageHost.Children.Add(intro);
+  src\Nexus.App\MainWindow.axaml.cs:204:
+  src\Nexus.App\MainWindow.axaml.cs:205:        var toolbar = new Grid { ColumnDefinitions = new 
+ColumnDefinitions("Auto,*,Auto,Auto"), ColumnSpacing = 8, Margin = new Thickness(0, 8, 0, 8) };
+  src\Nexus.App\MainWindow.axaml.cs:206:        var chatMode = ActionButton("Chat", "primary", (_, _) => 
+RenderAiCenter());
+  src\Nexus.App\MainWindow.axaml.cs:207:        chatMode.IsEnabled = false;
+> src\Nexus.App\MainWindow.axaml.cs:208:        var modelLabel = new TextBlock { Text = "Local model", 
+VerticalAlignment = VerticalAlignment.Center, Foreground = Brush("#A6A8BD"), FontSize = 11 };
+  src\Nexus.App\MainWindow.axaml.cs:209:        
+  src\Nexus.App\MainWindow.axaml.cs:210:_aiModel = new ComboBox
+  src\Nexus.App\MainWindow.axaml.cs:211:{
+  src\Nexus.App\MainWindow.axaml.cs:212:    MinWidth = 180,
+  src\Nexus.App\MainWindow.axaml.cs:286:    }
+  src\Nexus.App\MainWindow.axaml.cs:287:
+> src\Nexus.App\MainWindow.axaml.cs:288:    private void RenderGamingAiInsideAi()
+  src\Nexus.App\MainWindow.axaml.cs:289:    {
+  src\Nexus.App\MainWindow.axaml.cs:290:        // This is a sub-view inside the existing AI workspace; it does not 
+create a sidebar tab.
+  src\Nexus.App\MainWindow.axaml.cs:291:        PageHost.Children.Clear();
+  src\Nexus.App\MainWindow.axaml.cs:292:        var title = new StackPanel { Spacing = 8 };
+> src\Nexus.App\MainWindow.axaml.cs:293:        title.Children.Add(new TextBlock { Text = "NEXUS / GAMING AI", 
+FontSize = 10, FontWeight = FontWeight.Bold, Foreground = Brush(AccentHex()), LetterSpacing = 2 });
+> src\Nexus.App\MainWindow.axaml.cs:294:        title.Children.Add(new TextBlock { Text = "Gaming AI", FontSize = 28, 
+FontWeight = FontWeight.Bold, Foreground = Brush("#F5F5FA") });
+> src\Nexus.App\MainWindow.axaml.cs:295:        title.Children.Add(new TextBlock { Text = "Ask the configured local 
+model for game tips, settings suggestions, build advice or troubleshooting. No game telemetry is invented or 
+automatically collected.", FontSize = 12, Foreground = Brush("#A6A8BD"), TextWrapping = TextWrapping.Wrap });
+  src\Nexus.App\MainWindow.axaml.cs:296:        PageHost.Children.Add(title);
+  src\Nexus.App\MainWindow.axaml.cs:297:        var card = Card("GAMING ASSISTANT");
+  src\Nexus.App\MainWindow.axaml.cs:298:        AddText(card, "Gaming AI uses the same local chat engine. Choose a 
+prompt below to start a real conversation.", 12, "#A6A8BD", 0, 0, true);
+  src\Nexus.App\MainWindow.axaml.cs:299:        card.Children.Add(ActionButton("Game performance advice", 
+"secondary", (_, _) => { RenderAiCenter(); if (_aiPrompt != null) _aiPrompt.Text = "Help me troubleshoot game 
+performance on Windows. Ask for the missing hardware and game details before making recommendations."; }));
+  src\Nexus.App\MainWindow.axaml.cs:450:        var content = new StackPanel { Spacing = 8 };
+  src\Nexus.App\MainWindow.axaml.cs:451:        var top = new Grid { ColumnDefinitions = new 
+ColumnDefinitions("*,Auto") };
+> src\Nexus.App\MainWindow.axaml.cs:452:        top.Children.Add(new TextBlock { Text = label, FontSize = 9, 
+FontWeight = FontWeight.Bold, Foreground = Brush("#8588A1"), LetterSpacing = 0.8, VerticalAlignment = 
+VerticalAlignment.Center });
+> src\Nexus.App\MainWindow.axaml.cs:453:        var icon = new TextBlock { Text = glyph, FontSize = 19, Foreground = 
+Brush(accent), VerticalAlignment = VerticalAlignment.Center };
+  src\Nexus.App\MainWindow.axaml.cs:454:        Grid.SetColumn(icon, 1); top.Children.Add(icon); 
+content.Children.Add(top);
+> src\Nexus.App\MainWindow.axaml.cs:455:        content.Children.Add(new TextBlock { Text = value, FontSize = 17, 
+FontWeight = FontWeight.SemiBold, Foreground = Brush("#F0F1F8"), TextWrapping = TextWrapping.Wrap });
+> src\Nexus.App\MainWindow.axaml.cs:456:        content.Children.Add(new TextBlock { Text = detail, FontSize = 11, 
+Foreground = Brush("#9295AC"), TextWrapping = TextWrapping.Wrap });
+  src\Nexus.App\MainWindow.axaml.cs:457:        return new Border { Background = Gradient("#171827", "#10111B"), 
+BorderBrush = Brush(WithAlpha(accent, "55")), BorderThickness = new Thickness(1), CornerRadius = new 
+CornerRadius(18), Padding = new Thickness(18), BoxShadow = BoxShadows.Parse("0 10 30 #30000000"), Child = content };
+  src\Nexus.App\MainWindow.axaml.cs:458:    }
+  src\Nexus.App\MainWindow.axaml.cs:459:
+  src\Nexus.App\MainWindow.axaml.cs:460:    private static Border AiStage(string number, string title, string 
+description, string status, string accent)
+  src\Nexus.App\MainWindow.axaml.cs:461:    {
+  src\Nexus.App\MainWindow.axaml.cs:462:        var stack = new StackPanel { Spacing = 8 };
+> src\Nexus.App\MainWindow.axaml.cs:463:        stack.Children.Add(new TextBlock { Text = number, FontSize = 22, 
+FontWeight = FontWeight.Bold, Foreground = Brush(accent) });
+> src\Nexus.App\MainWindow.axaml.cs:464:        stack.Children.Add(new TextBlock { Text = title, FontSize = 13, 
+FontWeight = FontWeight.SemiBold, Foreground = Brush("#F0F1F8"), TextWrapping = TextWrapping.Wrap });
+> src\Nexus.App\MainWindow.axaml.cs:465:        stack.Children.Add(new TextBlock { Text = description, FontSize = 11, 
+Foreground = Brush("#9295AC"), TextWrapping = TextWrapping.Wrap });
+> src\Nexus.App\MainWindow.axaml.cs:466:        stack.Children.Add(new TextBlock { Text = status, FontSize = 9, 
+FontWeight = FontWeight.Bold, Foreground = Brush(accent), LetterSpacing = 1.2 });
+  src\Nexus.App\MainWindow.axaml.cs:467:        return new Border { Background = Gradient("#1B1C2C", "#12131F"), 
+BorderBrush = Brush(WithAlpha(accent, "44")), BorderThickness = new Thickness(1), CornerRadius = new 
+CornerRadius(14), Padding = new Thickness(15), Child = stack };
+  src\Nexus.App\MainWindow.axaml.cs:468:    }
+  src\Nexus.App\MainWindow.axaml.cs:469:
+  src\Nexus.App\MainWindow.axaml.cs:470:    private void RenderDashboard()
+  src\Nexus.App\MainWindow.axaml.cs:473:        var welcome = new Border { CornerRadius = new CornerRadius(26), 
+Padding = new Thickness(32, 30), Background = Gradient(WithAlpha(AccentHex(), "55"), "#10111C"), BorderBrush = 
+Brush(WithAlpha(AccentHex(), "66")), BorderThickness = new Thickness(1), BoxShadow = BoxShadows.Parse("0 16 50 
+#40000000") };
+  src\Nexus.App\MainWindow.axaml.cs:474:        var welcomeStack = new StackPanel { Spacing = 7 };
+> src\Nexus.App\MainWindow.axaml.cs:475:        welcomeStack.Children.Add(new TextBlock { Text = "YOUR PERSONAL 
+WORKSPACE", FontSize = 10, FontWeight = FontWeight.Bold, Foreground = Brush(AccentHex()), LetterSpacing = 2 });
+> src\Nexus.App\MainWindow.axaml.cs:476:        welcomeStack.Children.Add(new TextBlock { Text = "Good to have you 
+back.", FontSize = 34, FontWeight = FontWeight.Bold, Foreground = Brush(_theme == "light" ? "#182B22" : "#F5F6FC") });
+> src\Nexus.App\MainWindow.axaml.cs:477:        welcomeStack.Children.Add(new TextBlock { Text = "A clearer view of 
+your system, tasks, games and connection â€” all in one private place.", FontSize = 13, Foreground = Brush(_theme == 
+"light" ? "#496657" : "#B3B9CB"), TextWrapping = TextWrapping.Wrap });
+  src\Nexus.App\MainWindow.axaml.cs:478:        welcome.Child = welcomeStack;
+  src\Nexus.App\MainWindow.axaml.cs:479:        if (_database.GetSetting("showWelcome", "true") == "true") 
+PageHost.Children.Add(welcome);
+  src\Nexus.App\MainWindow.axaml.cs:480:
+  src\Nexus.App\MainWindow.axaml.cs:481:        var tasks = _database.GetTasks();
+  src\Nexus.App\MainWindow.axaml.cs:523:                CornerRadius = new CornerRadius(10),
+  src\Nexus.App\MainWindow.axaml.cs:524:                Background = Brush(_theme == "light" ? "#F0EDFF" : "#29243F"),
+> src\Nexus.App\MainWindow.axaml.cs:525:                Child = new PathIcon
+  src\Nexus.App\MainWindow.axaml.cs:526:                {
+  src\Nexus.App\MainWindow.axaml.cs:527:                    Width = 17,
+  src\Nexus.App\MainWindow.axaml.cs:528:                    Height = 17,
+  src\Nexus.App\MainWindow.axaml.cs:529:                    Foreground = Brush(_theme == "light" ? "#7155D9" : 
+"#B6A0FF"),
+> src\Nexus.App\MainWindow.axaml.cs:530:                    Data = Geometry.Parse(ModuleIconGeometry(module.Name))
+  src\Nexus.App\MainWindow.axaml.cs:531:                }
+  src\Nexus.App\MainWindow.axaml.cs:532:            });
+  src\Nexus.App\MainWindow.axaml.cs:533:            moduleHeader.Children.Add(new TextBlock
+  src\Nexus.App\MainWindow.axaml.cs:534:            {
+  src\Nexus.App\MainWindow.axaml.cs:540:            });
+  src\Nexus.App\MainWindow.axaml.cs:541:            inner.Children.Add(moduleHeader);
+> src\Nexus.App\MainWindow.axaml.cs:542:            inner.Children.Add(new TextBlock { Text = 
+module.Status.ToUpperInvariant(), FontSize = 9, FontWeight = FontWeight.Bold, Foreground = Brush(module.Status == 
+"Available" ? "#15945B" : module.Status == "Read-only" ? "#087FB5" : "#8B70E8") });
+  src\Nexus.App\MainWindow.axaml.cs:543:            button.Content = inner;
+  src\Nexus.App\MainWindow.axaml.cs:544:            button.Click += (_, _) => RenderPage(module.Name);
+  src\Nexus.App\MainWindow.axaml.cs:545:            moduleGrid.Children.Add(button);
+  src\Nexus.App\MainWindow.axaml.cs:546:        }
+  src\Nexus.App\MainWindow.axaml.cs:549:    }
+  src\Nexus.App\MainWindow.axaml.cs:550:
+> src\Nexus.App\MainWindow.axaml.cs:551:    private static string ModuleIconGeometry(string name) => name switch
+  src\Nexus.App\MainWindow.axaml.cs:552:    {
+  src\Nexus.App\MainWindow.axaml.cs:553:        "AI Center" => "M12,2 L14,9 L21,12 L14,14 L12,21 L10,14 L3,12 L10,9 
+Z",
+  src\Nexus.App\MainWindow.axaml.cs:554:        "System Center" => "M7,4 H17 V8 H21 V16 H17 V20 H7 V16 H3 V8 H7 Z 
+M9,9 H15 V15 H9 Z",
+  src\Nexus.App\MainWindow.axaml.cs:555:        "File Manager" => "M3,6 H10 L12,9 H21 V19 H3 Z",
+  src\Nexus.App\MainWindow.axaml.cs:564:    };
+  src\Nexus.App\MainWindow.axaml.cs:565:
+> src\Nexus.App\MainWindow.axaml.cs:566:    private static string FeatureIconGeometry(string glyph) => glyph switch
+  src\Nexus.App\MainWindow.axaml.cs:567:    {
+  src\Nexus.App\MainWindow.axaml.cs:568:        "TASK" => ModuleIconGeometry("Productivity"),
+  src\Nexus.App\MainWindow.axaml.cs:569:        "✓" => "M4,12 L9,17 L20,6",
+  src\Nexus.App\MainWindow.axaml.cs:570:        "GAME" => ModuleIconGeometry("Gaming"),
+  src\Nexus.App\MainWindow.axaml.cs:582:        var button = new Button { Background = Gradient(darkColor, 
+"#0C0D16"), BorderBrush = Brush(WithAlpha(darkColor, "AA")), BorderThickness = new Thickness(1), CornerRadius = new 
+CornerRadius(22), Padding = new Thickness(20), Margin = new Thickness(5), HorizontalContentAlignment = 
+HorizontalAlignment.Stretch, VerticalContentAlignment = VerticalAlignment.Stretch };
+  src\Nexus.App\MainWindow.axaml.cs:583:        var grid = new Grid { ColumnDefinitions = new 
+ColumnDefinitions("*,Auto"), RowDefinitions = new RowDefinitions("Auto,*,Auto") };
+> src\Nexus.App\MainWindow.axaml.cs:584:        var top = new TextBlock { Text = eyebrow, FontSize = 9, FontWeight = 
+FontWeight.Bold, LetterSpacing = 1.1, Foreground = Brush(_theme == "light" ? darkColor : "#FFFFFF") };
+> src\Nexus.App\MainWindow.axaml.cs:585:        var big = new TextBlock { Text = value, FontSize = 30, FontWeight = 
+FontWeight.Bold, Foreground = Brush("#FFFFFF"), VerticalAlignment = VerticalAlignment.Center };
+> src\Nexus.App\MainWindow.axaml.cs:586:        var sub = new TextBlock { Text = caption, FontSize = 11, Foreground = 
+Brush(_theme == "light" ? "#475569" : "#F0EAFE") };
+> src\Nexus.App\MainWindow.axaml.cs:587:        var icon = new Border { Width = 42, Height = 42, CornerRadius = new 
+CornerRadius(15), Background = Brush(_theme == "light" ? "#AAFFFFFF" : "#22FFFFFF"), VerticalAlignment = 
+VerticalAlignment.Center, Child = new PathIcon { Data = Geometry.Parse(FeatureIconGeometry(glyph)), Width = 21, 
+Height = 21, Foreground = Brush(_theme == "light" ? darkColor : "#FFFFFF"), HorizontalAlignment = 
+HorizontalAlignment.Center, VerticalAlignment = VerticalAlignment.Center } };
+  src\Nexus.App\MainWindow.axaml.cs:588:        Grid.SetRow(top, 0); grid.Children.Add(top); Grid.SetRow(big, 1); 
+grid.Children.Add(big); Grid.SetRow(sub, 2); grid.Children.Add(sub); Grid.SetColumn(icon, 1); Grid.SetRow(icon, 1); 
+grid.Children.Add(icon);
+  src\Nexus.App\MainWindow.axaml.cs:589:        button.Content = grid; button.Click += click; return button;
+  src\Nexus.App\MainWindow.axaml.cs:590:    }
+  src\Nexus.App\MainWindow.axaml.cs:591:
+  src\Nexus.App\MainWindow.axaml.cs:630:        if (tasks.Count == 0)
+  src\Nexus.App\MainWindow.axaml.cs:631:        {
+> src\Nexus.App\MainWindow.axaml.cs:632:            _taskList.Children.Add(new TextBlock { Text = "No tasks yet. Add 
+one above to get started.", Foreground = Brush("#8588A1"), Margin = new Thickness(2, 8) });
+  src\Nexus.App\MainWindow.axaml.cs:633:            return;
+  src\Nexus.App\MainWindow.axaml.cs:634:        }
+  src\Nexus.App\MainWindow.axaml.cs:635:        foreach (var task in tasks)
+  src\Nexus.App\MainWindow.axaml.cs:636:        {
+  src\Nexus.App\MainWindow.axaml.cs:643:                RefreshTaskList();
+  src\Nexus.App\MainWindow.axaml.cs:644:            };
+> src\Nexus.App\MainWindow.axaml.cs:645:            var title = new TextBlock { Text = task.Title, FontSize = 13, 
+VerticalAlignment = VerticalAlignment.Center, TextWrapping = TextWrapping.Wrap, Foreground = Brush(task.IsCompleted ? 
+"#7E8198" : "#E8E9F3"), TextDecorations = task.IsCompleted ? TextDecorations.Strikethrough : null };
+  src\Nexus.App\MainWindow.axaml.cs:646:            var delete = ActionButton("Delete", "secondary", async (_, _) =>
+  src\Nexus.App\MainWindow.axaml.cs:647:            {
+  src\Nexus.App\MainWindow.axaml.cs:648:                var approved = await ConfirmAsync("Delete task?", $"This 
+permanently deletes the task:\n\nâ€œ{task.Title}â€\n\nThis action cannot be undone.", true);
+  src\Nexus.App\MainWindow.axaml.cs:649:                if (!approved) return;
+  src\Nexus.App\MainWindow.axaml.cs:684:    }
+  src\Nexus.App\MainWindow.axaml.cs:685:
+> src\Nexus.App\MainWindow.axaml.cs:686:    private void RenderFileManager()
+  src\Nexus.App\MainWindow.axaml.cs:687:    {
+  src\Nexus.App\MainWindow.axaml.cs:688:        PageHost.Children.Add(SectionIntro("Your local files, under your 
+control.", "Browse folders and open items. Creating, renaming and deleting always requires confirmation of the exact 
+path."));
+  src\Nexus.App\MainWindow.axaml.cs:689:        var card = Card("Folder location");
+  src\Nexus.App\MainWindow.axaml.cs:690:        var row = new Grid { ColumnDefinitions = new 
+ColumnDefinitions("*,Auto,Auto"), ColumnSpacing = 8 };
+  src\Nexus.App\MainWindow.axaml.cs:792:                try { details = isDirectory ? "Folder" : $"File Â· 
+{FormatSize(new FileInfo(entry).Length)}"; } catch { details = isDirectory ? "Folder" : "File Â· size unavailable"; }
+  src\Nexus.App\MainWindow.axaml.cs:793:                var entryGrid = new Grid { ColumnDefinitions = new 
+ColumnDefinitions("*,Auto,Auto,Auto,Auto"), ColumnSpacing = 8 };
+> src\Nexus.App\MainWindow.axaml.cs:794:                var nameText = new TextBlock { Text = (isDirectory ? "â–°  " 
+: "FILE  ") + name, Foreground = Brush("#E7E8F2"), VerticalAlignment = VerticalAlignment.Center, TextWrapping = 
+TextWrapping.Wrap };
+  src\Nexus.App\MainWindow.axaml.cs:795:                var open = ActionButton(isDirectory ? "Enter" : "Open", 
+"secondary", (_, _) => { if (isDirectory) { _folderInput.Text = entry; ListFolderMetadata(); } else OpenFile(entry); 
+});
+  src\Nexus.App\MainWindow.axaml.cs:796:                var copy = ActionButton("Copy path", "secondary", async (_, 
+_) =>
+  src\Nexus.App\MainWindow.axaml.cs:797:                {
+  src\Nexus.App\MainWindow.axaml.cs:798:                    try { var clipboard = 
+TopLevel.GetTopLevel(this)?.Clipboard; if (clipboard is null) throw new InvalidOperationException("Clipboard is 
+unavailable."); await clipboard.SetTextAsync(Path.GetFullPath(entry)); ShowNotice("Exact path copied to clipboard."); 
+}
+  src\Nexus.App\MainWindow.axaml.cs:807:                _fileList.Children.Add(new Border { Background = 
+Brush("#151622"), CornerRadius = new CornerRadius(7), Padding = new Thickness(8), Child = entryGrid }); count++;
+  src\Nexus.App\MainWindow.axaml.cs:808:            }
+> src\Nexus.App\MainWindow.axaml.cs:809:            if (count == 0) _fileList.Children.Add(new TextBlock { Text = 
+string.IsNullOrWhiteSpace(filter) ? "This folder is empty." : "No entries match this filter.", Foreground = 
+Brush("#8588A1") });
+  src\Nexus.App\MainWindow.axaml.cs:810:            _audit.Record("file.metadata-list", "success", path);
+  src\Nexus.App\MainWindow.axaml.cs:811:        }
+> src\Nexus.App\MainWindow.axaml.cs:812:        catch (Exception ex) { _fileList.Children.Add(new TextBlock { Text = 
+ex.Message, Foreground = Brush("#FB7185"), TextWrapping = TextWrapping.Wrap }); _audit.Record("file.metadata-list", 
+"failed"); }
+  src\Nexus.App\MainWindow.axaml.cs:813:    }
+  src\Nexus.App\MainWindow.axaml.cs:814:
+  src\Nexus.App\MainWindow.axaml.cs:815:    private bool AuthorizeFileOperation(string action, string exactTarget)
+  src\Nexus.App\MainWindow.axaml.cs:816:    {
+  src\Nexus.App\MainWindow.axaml.cs:835:        var dialog = new Window { Title = "Rename item", Width = 460, 
+SizeToContent = SizeToContent.Height, WindowStartupLocation = WindowStartupLocation.CenterOwner, Background = 
+Brush("#11121C") };
+  src\Nexus.App\MainWindow.axaml.cs:836:        var stack = new StackPanel { Spacing = 12 };
+> src\Nexus.App\MainWindow.axaml.cs:837:        stack.Children.Add(new TextBlock { Text = "New name (same parent 
+folder only)", Foreground = Brush("#E7E8F2") });
+  src\Nexus.App\MainWindow.axaml.cs:838:        var input = new TextBox { Text = Path.GetFileName(source), MaxLength 
+= 240 };
+  src\Nexus.App\MainWindow.axaml.cs:839:        stack.Children.Add(input);
+  src\Nexus.App\MainWindow.axaml.cs:840:        var buttons = new StackPanel { Orientation = Orientation.Horizontal, 
+HorizontalAlignment = HorizontalAlignment.Right, Spacing = 8 };
+  src\Nexus.App\MainWindow.axaml.cs:841:        buttons.Children.Add(ActionButton("Cancel", "secondary", (_, _) => 
+dialog.Close(false)));
+  src\Nexus.App\MainWindow.axaml.cs:929:            var row = new Grid { ColumnDefinitions = new 
+ColumnDefinitions("*,Auto,Auto"), ColumnSpacing = 8 };
+  src\Nexus.App\MainWindow.axaml.cs:930:            var info = new StackPanel { Spacing = 4 };
+> src\Nexus.App\MainWindow.axaml.cs:931:            info.Children.Add(new TextBlock { Text = recipe.Name, FontWeight 
+= FontWeight.SemiBold, Foreground = Brush("#E7E8F2") });
+> src\Nexus.App\MainWindow.axaml.cs:932:            info.Children.Add(new TextBlock { Text = "Open workspace: " + 
+recipe.Page, FontSize = 11, Foreground = Brush("#8588A1") });
+  src\Nexus.App\MainWindow.axaml.cs:933:            var run = ActionButton("Run", "primary", async (_, _) =>
+  src\Nexus.App\MainWindow.axaml.cs:934:            {
+  src\Nexus.App\MainWindow.axaml.cs:935:                if (!AllowedWorkspacePages.Contains(recipe.Page)) { 
+ShowNotice("This recipe destination is invalid and cannot run."); return; }
+  src\Nexus.App\MainWindow.axaml.cs:936:                if (!await ConfirmAsync("Run workspace recipe?", $"This 
+recipe will navigate to:\n\n{recipe.Page}\n\nNo files, commands or system settings will be changed.", false)) return;
+  src\Nexus.App\MainWindow.axaml.cs:1081:    }
+  src\Nexus.App\MainWindow.axaml.cs:1082:
+> src\Nexus.App\MainWindow.axaml.cs:1083:    private void RenderCustomization()
+  src\Nexus.App\MainWindow.axaml.cs:1084:    {
+  src\Nexus.App\MainWindow.axaml.cs:1085:        PageHost.Children.Add(SectionIntro("Make NEXUS yours.", "A 
+dark-first design system with live local preferences. Light mode is intentionally unavailable in this build to avoid 
+inconsistent control styling."));
+  src\Nexus.App\MainWindow.axaml.cs:1086:
+  src\Nexus.App\MainWindow.axaml.cs:1087:        var hero = new Border { CornerRadius = new CornerRadius(20), Padding 
+= new Thickness(24), Background = Brush("#171426"), BorderBrush = Brush(AccentHex()), BorderThickness = new 
+Thickness(1) };
+  src\Nexus.App\MainWindow.axaml.cs:1088:        var heroGrid = new Grid { ColumnDefinitions = new 
+ColumnDefinitions("*,Auto") };
+  src\Nexus.App\MainWindow.axaml.cs:1089:        var heroContent = new StackPanel { Spacing = 8, VerticalAlignment = 
+VerticalAlignment.Center };
+> src\Nexus.App\MainWindow.axaml.cs:1090:        heroContent.Children.Add(new TextBlock { Text = "NEXUS DESIGN SYSTEM 
+ /  01", FontSize = 10, FontWeight = FontWeight.Bold, Foreground = Brush(AccentHex()), LetterSpacing = 1.5 });
+> src\Nexus.App\MainWindow.axaml.cs:1091:        heroContent.Children.Add(new TextBlock { Text = "Built around your 
+workflow.", FontSize = 26, FontWeight = FontWeight.Bold, Foreground = Brush("#F5F5FA") });
+> src\Nexus.App\MainWindow.axaml.cs:1092:        heroContent.Children.Add(new TextBlock { Text = $"MIDNIGHT DARK  Â·  
+{TitleCase(_density).ToUpperInvariant()} SPACING  Â·  {TitleCase(_accent).ToUpperInvariant()} ACCENT", FontSize = 11, 
+Foreground = Brush("#A6A8BD") });
+  src\Nexus.App\MainWindow.axaml.cs:1093:        heroGrid.Children.Add(heroContent);
+  src\Nexus.App\MainWindow.axaml.cs:1094:        var preview = new Border { Width = 92, Height = 76, CornerRadius = 
+new CornerRadius(16), Background = Brush("#0D0E17"), BorderBrush = Brush("#35314D"), BorderThickness = new 
+Thickness(1), Padding = new Thickness(10), VerticalAlignment = VerticalAlignment.Center };
+  src\Nexus.App\MainWindow.axaml.cs:1095:        var previewStack = new StackPanel { Spacing = 6, VerticalAlignment = 
+VerticalAlignment.Center };
+  src\Nexus.App\MainWindow.axaml.cs:1096:        previewStack.Children.Add(new Border { Height = 7, CornerRadius = 
+new CornerRadius(4), Background = Brush(AccentHex()), Width = 54, HorizontalAlignment = HorizontalAlignment.Left });
+  src\Nexus.App\MainWindow.axaml.cs:1111:        var sampleCard = new Border { Background = Brush("#0D0E17"), 
+BorderBrush = Brush("#2A2B40"), BorderThickness = new Thickness(1), CornerRadius = new CornerRadius(11), Padding = 
+new Thickness(12) };
+  src\Nexus.App\MainWindow.axaml.cs:1112:        var sampleText = new StackPanel { Spacing = 5 };
+> src\Nexus.App\MainWindow.axaml.cs:1113:        sampleText.Children.Add(new TextBlock { Text = "LIVE PREVIEW", 
+FontSize = 9, FontWeight = FontWeight.Bold, Foreground = Brush("#8588A1") });
+> src\Nexus.App\MainWindow.axaml.cs:1114:        sampleText.Children.Add(new TextBlock { Text = "Your workspace, your 
+color.", FontSize = 13, FontWeight = FontWeight.SemiBold, Foreground = Brush("#F1F2F8") });
+  src\Nexus.App\MainWindow.axaml.cs:1115:        sampleCard.Child = sampleText; accentSample.Children.Add(sampleCard);
+  src\Nexus.App\MainWindow.axaml.cs:1116:        var sampleDot = new Border { Width = 40, Height = 40, CornerRadius = 
+new CornerRadius(12), Background = Brush(AccentHex()), Margin = new Thickness(12, 0, 0, 0), VerticalAlignment = 
+VerticalAlignment.Center };
+  src\Nexus.App\MainWindow.axaml.cs:1117:        Grid.SetColumn(sampleDot, 1); accentSample.Children.Add(sampleDot); 
+appearance.Children.Add(accentSample); PageHost.Children.Add(appearance);
+  src\Nexus.App\MainWindow.axaml.cs:1118:
+  src\Nexus.App\MainWindow.axaml.cs:1246:    }
+  src\Nexus.App\MainWindow.axaml.cs:1247:
+> src\Nexus.App\MainWindow.axaml.cs:1248:    private void RenderNetwork()
+  src\Nexus.App\MainWindow.axaml.cs:1249:    {
+  src\Nexus.App\MainWindow.axaml.cs:1250:        PageHost.Children.Add(SectionIntro("Network intelligence", "A live, 
+local-only view of your adapters, addressing and route health. No packet capture, port scanning or remote-device 
+discovery is performed."));
+  src\Nexus.App\MainWindow.axaml.cs:1251:        var all = NetworkInterface.GetAllNetworkInterfaces()
+  src\Nexus.App\MainWindow.axaml.cs:1252:            .Where(n => n.NetworkInterfaceType != 
+NetworkInterfaceType.Loopback)
+  src\Nexus.App\MainWindow.axaml.cs:1268:        var actions = Card("DIAGNOSTICS");
+  src\Nexus.App\MainWindow.axaml.cs:1269:        AddText(actions, "Run a basic ICMP reachability check to a public 
+resolver. Some networks block ping, so a timeout does not prove the internet is down.", 12, "#A6A8BD", 0, 0, true);
+> src\Nexus.App\MainWindow.axaml.cs:1270:        var result = new TextBlock { Text = "No diagnostic run yet.", 
+FontSize = 12, Foreground = Brush("#C4B5FD"), TextWrapping = TextWrapping.Wrap };
+  src\Nexus.App\MainWindow.axaml.cs:1271:        actions.Children.Add(ActionButton("Run connectivity check", 
+"primary", async (_, _) =>
+  src\Nexus.App\MainWindow.axaml.cs:1272:        {
+  src\Nexus.App\MainWindow.axaml.cs:1273:            result.Text = "Checking connectivityâ€¦";
+  src\Nexus.App\MainWindow.axaml.cs:1274:            try
+  src\Nexus.App\MainWindow.axaml.cs:1294:            var block = new Border { Background = Brush(active ? "#191B2A" : 
+"#12131D"), BorderBrush = Brush(active ? "#343550" : "#26273A"), BorderThickness = new Thickness(1), CornerRadius = 
+new CornerRadius(11), Padding = new Thickness(13), Margin = new Thickness(0, 3, 0, 5) };
+  src\Nexus.App\MainWindow.axaml.cs:1295:            var stack = new StackPanel { Spacing = 5 };
+> src\Nexus.App\MainWindow.axaml.cs:1296:            stack.Children.Add(new TextBlock { Text = (active ? "â—  " : 
+"â—‹  ") + nic.Name, FontSize = 13, FontWeight = FontWeight.SemiBold, Foreground = Brush(active ? "#F4F5FA" : 
+"#9295AC"), TextWrapping = TextWrapping.Wrap });
+> src\Nexus.App\MainWindow.axaml.cs:1297:            stack.Children.Add(new TextBlock { Text = 
+$"{nic.NetworkInterfaceType} Â· {nic.OperationalStatus} Â· {(nic.Speed > 0 ? $"{nic.Speed / 1_000_000.0:0.#} Mbps 
+link rate" : "Link rate unavailable")}", FontSize = 11, Foreground = Brush(active ? "#4ADE80" : "#8588A1"), 
+TextWrapping = TextWrapping.Wrap });
+  src\Nexus.App\MainWindow.axaml.cs:1298:            try
+  src\Nexus.App\MainWindow.axaml.cs:1299:            {
+  src\Nexus.App\MainWindow.axaml.cs:1300:                var props = nic.GetIPProperties();
+  src\Nexus.App\MainWindow.axaml.cs:1301:                var addr = props.UnicastAddresses.Select(a => 
+a.Address.ToString()).ToArray();
+  src\Nexus.App\MainWindow.axaml.cs:1302:                var gw = props.GatewayAddresses.Select(a => 
+a.Address.ToString()).Where(a => a != "0.0.0.0" && a != "::").ToArray();
+  src\Nexus.App\MainWindow.axaml.cs:1303:                var dn = props.DnsAddresses.Select(a => 
+a.ToString()).ToArray();
+> src\Nexus.App\MainWindow.axaml.cs:1304:                stack.Children.Add(new TextBlock { Text = "IP  " + 
+(addr.Length == 0 ? "â€”" : string.Join("  Â·  ", addr.Take(5))), FontSize = 11, Foreground = Brush("#B9BCD0"), 
+TextWrapping = TextWrapping.Wrap });
+> src\Nexus.App\MainWindow.axaml.cs:1305:                stack.Children.Add(new TextBlock { Text = "GW  " + 
+(gw.Length == 0 ? "â€”" : string.Join("  Â·  ", gw.Take(3))) + "     DNS  " + (dn.Length == 0 ? "â€”" : string.Join(" 
+ Â·  ", dn.Take(3))), FontSize = 11, Foreground = Brush("#9295AC"), TextWrapping = TextWrapping.Wrap });
+  src\Nexus.App\MainWindow.axaml.cs:1306:            }
+> src\Nexus.App\MainWindow.axaml.cs:1307:            catch (NetworkInformationException) { stack.Children.Add(new 
+TextBlock { Text = "Detailed adapter properties are unavailable.", FontSize = 11, Foreground = Brush("#FBBF24") }); }
+  src\Nexus.App\MainWindow.axaml.cs:1308:            block.Child = stack; adapters.Children.Add(block);
+  src\Nexus.App\MainWindow.axaml.cs:1309:        }
+  src\Nexus.App\MainWindow.axaml.cs:1310:        PageHost.Children.Add(adapters);
+  src\Nexus.App\MainWindow.axaml.cs:1311:        var safety = Card("PRIVACY & LIMITS");
+  src\Nexus.App\MainWindow.axaml.cs:1327:    }
+  src\Nexus.App\MainWindow.axaml.cs:1328:
+> src\Nexus.App\MainWindow.axaml.cs:1329:    private void RenderGaming()
+  src\Nexus.App\MainWindow.axaml.cs:1330:    {
+  src\Nexus.App\MainWindow.axaml.cs:1331:        // Gaming dashboard is composed from real local discovery and honest 
+unavailable states.
+  src\Nexus.App\MainWindow.axaml.cs:1332:        // No fabricated FPS, GPU temperature, playtime, network speed, or 
+AI output is shown.
+  src\Nexus.App\MainWindow.axaml.cs:1333:        var libraries = DiscoverInstalledGames().OrderBy(g => g.Name, 
+StringComparer.OrdinalIgnoreCase).ToList();
+  src\Nexus.App\MainWindow.axaml.cs:1352:        var heroGrid = new Grid { ColumnDefinitions = new 
+ColumnDefinitions("1.25*,0.75*") };
+  src\Nexus.App\MainWindow.axaml.cs:1353:        var heroText = new StackPanel { Spacing = 8, VerticalAlignment = 
+VerticalAlignment.Center };
+> src\Nexus.App\MainWindow.axaml.cs:1354:        heroText.Children.Add(new Border { Background = Brush("#35116B"), 
+BorderBrush = Brush("#8B5CF6"), BorderThickness = new Thickness(1), CornerRadius = new CornerRadius(9), Padding = new 
+Thickness(8, 4), HorizontalAlignment = HorizontalAlignment.Left, Child = new TextBlock { Text = "â—‰  GAMING COMMAND 
+CENTER", FontSize = 9, FontWeight = FontWeight.Bold, Foreground = Brush("#E9D5FF") } });
+> src\Nexus.App\MainWindow.axaml.cs:1355:        heroText.Children.Add(new TextBlock { Text = "PLAY. OPTIMIZE. 
+CREATE.", FontSize = 10, FontWeight = FontWeight.Bold, Foreground = Brush("#22D3EE"), LetterSpacing = 1.5 });
+> src\Nexus.App\MainWindow.axaml.cs:1356:        heroText.Children.Add(new TextBlock { Text = "Your games,\nyour 
+command center.", FontSize = 25, FontWeight = FontWeight.Bold, Foreground = Brush("#FFFFFF"), TextWrapping = 
+TextWrapping.Wrap });
+> src\Nexus.App\MainWindow.axaml.cs:1357:        heroText.Children.Add(new TextBlock { Text = $"{libraries.Count} 
+discovered titles  Â·  {running.Count} active game/launcher processes", FontSize = 10, Foreground = Brush("#C4C7E6"), 
+TextWrapping = TextWrapping.Wrap });
+  src\Nexus.App\MainWindow.axaml.cs:1358:        var heroActions = new WrapPanel { Orientation = 
+Orientation.Horizontal };
+  src\Nexus.App\MainWindow.axaml.cs:1359:        var scan = ActionButton("Rescan Library", "primary", (_, _) => 
+RenderPage("Gaming")); scan.Margin = new Thickness(0, 3, 7, 3);
+  src\Nexus.App\MainWindow.axaml.cs:1360:        var details = ActionButton("Performance", "secondary", (_, _) => 
+RenderPage("System Center")); details.Margin = new Thickness(0, 3, 7, 3);
+  src\Nexus.App\MainWindow.axaml.cs:1361:        heroActions.Children.Add(scan); heroActions.Children.Add(details); 
+heroText.Children.Add(heroActions);
+  src\Nexus.App\MainWindow.axaml.cs:1364:        heroArt.Children.Add(new Ellipse { Width = 150, Height = 150, Fill = 
+Gradient("#5134A8", "#101B48"), Stroke = Brush("#9F67FF"), StrokeThickness = 1, HorizontalAlignment = 
+HorizontalAlignment.Center, VerticalAlignment = VerticalAlignment.Center });
+  src\Nexus.App\MainWindow.axaml.cs:1365:        heroArt.Children.Add(new Ellipse { Width = 118, Height = 118, Stroke 
+= Brush("#22D3EE"), StrokeThickness = 1, HorizontalAlignment = HorizontalAlignment.Center, VerticalAlignment = 
+VerticalAlignment.Center });
+> src\Nexus.App\MainWindow.axaml.cs:1366:        heroArt.Children.Add(new TextBlock { Text = "N", FontSize = 88, 
+FontWeight = FontWeight.Black, Foreground = Brush("#E9D5FF"), HorizontalAlignment = HorizontalAlignment.Center, 
+VerticalAlignment = VerticalAlignment.Center });
+  src\Nexus.App\MainWindow.axaml.cs:1367:        Grid.SetColumn(heroArt, 1); heroGrid.Children.Add(heroArt); 
+hero.Child = heroGrid; left.Children.Add(hero);
+  src\Nexus.App\MainWindow.axaml.cs:1368:
+  src\Nexus.App\MainWindow.axaml.cs:1369:        var quick = GamingPanel("QUICK LAUNCH", "Apps open only when found 
+on this PC");
+  src\Nexus.App\MainWindow.axaml.cs:1370:        var quickGrid = new UniformGrid { Columns = 4 };
+  src\Nexus.App\MainWindow.axaml.cs:1373:            var button = new Button { Background = Brush("#0C1125"), 
+BorderBrush = Brush("#292B57"), BorderThickness = new Thickness(1), CornerRadius = new CornerRadius(8), Padding = new 
+Thickness(5), Margin = new Thickness(3), HorizontalContentAlignment = HorizontalAlignment.Center };
+  src\Nexus.App\MainWindow.axaml.cs:1374:            var stack = new StackPanel { Spacing = 4, HorizontalAlignment = 
+HorizontalAlignment.Center };
+> src\Nexus.App\MainWindow.axaml.cs:1375:            stack.Children.Add(new TextBlock { Text = app.Item2, FontSize = 
+21, Foreground = Brush(app.Item1 == "Discord" ? "#A78BFA" : app.Item1 == "Steam" ? "#67C1F5" : "#22D3EE"), 
+HorizontalAlignment = HorizontalAlignment.Center });
+> src\Nexus.App\MainWindow.axaml.cs:1376:            stack.Children.Add(new TextBlock { Text = app.Item1, FontSize = 
+9, Foreground = Brush("#D8DBF0"), HorizontalAlignment = HorizontalAlignment.Center });
+  src\Nexus.App\MainWindow.axaml.cs:1377:            button.Content = stack;
+  src\Nexus.App\MainWindow.axaml.cs:1378:            button.Click += (_, _) => LaunchKnownApplication(app.Item1);
+  src\Nexus.App\MainWindow.axaml.cs:1379:            quickGrid.Children.Add(button);
+  src\Nexus.App\MainWindow.axaml.cs:1380:        }
+  src\Nexus.App\MainWindow.axaml.cs:1383:        var gamePanel = GamingPanel("GAME LIBRARY", "Discovered from local 
+launcher manifests");
+  src\Nexus.App\MainWindow.axaml.cs:1384:        var filters = new WrapPanel { Orientation = Orientation.Horizontal };
+> src\Nexus.App\MainWindow.axaml.cs:1385:        filters.Children.Add(new TextBlock { Text = $"ALL GAMES  
+{libraries.Count}", FontSize = 10, FontWeight = FontWeight.Bold, Foreground = Brush("#C4B5FD"), Margin = new 
+Thickness(2, 5, 10, 7) });
+> src\Nexus.App\MainWindow.axaml.cs:1386:        filters.Children.Add(new TextBlock { Text = "INSTALLED", FontSize = 
+10, Foreground = Brush("#8D91B0"), Margin = new Thickness(2, 5, 10, 7) });
+> src\Nexus.App\MainWindow.axaml.cs:1387:        filters.Children.Add(new TextBlock { Text = "FAVORITES Â· 
+configurable", FontSize = 10, Foreground = Brush("#8D91B0"), Margin = new Thickness(2, 5, 0, 7) });
+  src\Nexus.App\MainWindow.axaml.cs:1388:        gamePanel.Children.Add(filters);
+  src\Nexus.App\MainWindow.axaml.cs:1389:        var gameGrid = new UniformGrid { Columns = 3 };
+  src\Nexus.App\MainWindow.axaml.cs:1390:        foreach (var game in libraries.Take(9))
+  src\Nexus.App\MainWindow.axaml.cs:1391:        {
+  src\Nexus.App\MainWindow.axaml.cs:1392:            var gameCard = new Border { Background = Gradient("#171B39", 
+"#0B1021"), BorderBrush = Brush("#30345E"), BorderThickness = new Thickness(1), CornerRadius = new CornerRadius(8), 
+Padding = new Thickness(8), Margin = new Thickness(3) };
+  src\Nexus.App\MainWindow.axaml.cs:1393:            var gameStack = new StackPanel { Spacing = 5 };
+> src\Nexus.App\MainWindow.axaml.cs:1394:            var art = new Border { Height = 58, CornerRadius = new 
+CornerRadius(6), Background = Gradient(GameAccent(game.Name), "#10162B"), Child = new TextBlock { Text = 
+game.Name.Length > 18 ? game.Name[..18] : game.Name, FontSize = 11, FontWeight = FontWeight.Bold, Foreground = 
+Brush("#FFFFFF"), TextWrapping = TextWrapping.Wrap, VerticalAlignment = VerticalAlignment.Center, HorizontalAlignment 
+= HorizontalAlignment.Center, TextAlignment = TextAlignment.Center, Margin = new Thickness(4) } };
+  src\Nexus.App\MainWindow.axaml.cs:1395:            gameStack.Children.Add(art);
+> src\Nexus.App\MainWindow.axaml.cs:1396:            gameStack.Children.Add(new TextBlock { Text = game.Name, 
+FontSize = 10, FontWeight = FontWeight.SemiBold, Foreground = Brush("#E9EAF7"), TextWrapping = TextWrapping.Wrap, 
+MaxHeight = 30 });
+> src\Nexus.App\MainWindow.axaml.cs:1397:            gameStack.Children.Add(new TextBlock { Text = game.Source, 
+FontSize = 9, Foreground = Brush("#8E94B7"), TextWrapping = TextWrapping.Wrap });
+> src\Nexus.App\MainWindow.axaml.cs:1398:            gameStack.Children.Add(new TextBlock { Text = "Detected Â· 
+launch path not verified", FontSize = 8, Foreground = Brush("#A5B4FC"), TextWrapping = TextWrapping.Wrap });
+  src\Nexus.App\MainWindow.axaml.cs:1399:            gameCard.Child = gameStack; gameGrid.Children.Add(gameCard);
+  src\Nexus.App\MainWindow.axaml.cs:1400:        }
+  src\Nexus.App\MainWindow.axaml.cs:1401:        if (libraries.Count == 0)
+> src\Nexus.App\MainWindow.axaml.cs:1402:            gamePanel.Children.Add(new TextBlock { Text = "No supported game 
+manifests found. You can rescan common locations; custom libraries are not yet configurable.", FontSize = 11, 
+Foreground = Brush("#FBBF24"), TextWrapping = TextWrapping.Wrap, Margin = new Thickness(4) });
+  src\Nexus.App\MainWindow.axaml.cs:1403:        else gamePanel.Children.Add(gameGrid);
+  src\Nexus.App\MainWindow.axaml.cs:1404:        gamePanel.Children.Add(ActionButton("Open full discovered list", 
+"secondary", (_, _) => ShowGameLibraryList(libraries)));
+  src\Nexus.App\MainWindow.axaml.cs:1405:        left.Children.Add(gamePanel);
+  src\Nexus.App\MainWindow.axaml.cs:1406:        Grid.SetColumn(left, 0); Grid.SetRow(left, 0); 
+root.Children.Add(left);
+  src\Nexus.App\MainWindow.axaml.cs:1415:        metrics.Children.Add(GamingMetric("GAME LIBRARY", 
+libraries.Count.ToString(), "discovered titles", "#34D399"));
+  src\Nexus.App\MainWindow.axaml.cs:1416:        perf.Children.Add(metrics);
+> src\Nexus.App\MainWindow.axaml.cs:1417:        perf.Children.Add(new TextBlock { Text = "FPS, frame time, GPU 
+temperature, VRAM and power readings are not currently available from a validated sensor provider.", FontSize = 10, 
+Foreground = Brush("#9BA2C6"), TextWrapping = TextWrapping.Wrap });
+  src\Nexus.App\MainWindow.axaml.cs:1418:        perf.Children.Add(ActionButton("View system diagnostics", 
+"secondary", (_, _) => RenderPage("System Center")));
+  src\Nexus.App\MainWindow.axaml.cs:1419:        middle.Children.Add(perf);
+  src\Nexus.App\MainWindow.axaml.cs:1420:
+  src\Nexus.App\MainWindow.axaml.cs:1421:        var ai = new Border { CornerRadius = new CornerRadius(12), Padding = 
+new Thickness(15), BorderBrush = Brush("#6B35D8"), BorderThickness = new Thickness(1), Background = 
+Gradient("#251052", "#0D1025") };
+  src\Nexus.App\MainWindow.axaml.cs:1422:        var aiStack = new StackPanel { Spacing = 8 };
+> src\Nexus.App\MainWindow.axaml.cs:1423:        aiStack.Children.Add(new StackPanel { Orientation = 
+Orientation.Horizontal, Spacing = 8, Children = { new TextBlock { Text = "âœ¦", FontSize = 23, Foreground = 
+Brush("#C084FC") }, new TextBlock { Text = "NEXUS AI", FontSize = 15, FontWeight = FontWeight.Bold, Foreground = 
+Brush("#FFFFFF"), VerticalAlignment = VerticalAlignment.Center } } });
+> src\Nexus.App\MainWindow.axaml.cs:1424:        aiStack.Children.Add(new TextBlock { Text = "Your gaming companion", 
+FontSize = 12, FontWeight = FontWeight.SemiBold, Foreground = Brush("#E9D5FF") });
+> src\Nexus.App\MainWindow.axaml.cs:1425:        aiStack.Children.Add(new TextBlock { Text = "AI execution and 
+external requests are paused by default. The companion will not pretend to analyze games until a provider is 
+configured and approved.", FontSize = 10, Foreground = Brush("#B9B4D7"), TextWrapping = TextWrapping.Wrap });
+  src\Nexus.App\MainWindow.axaml.cs:1426:        aiStack.Children.Add(ActionButton("Review AI status", "secondary", 
+(_, _) => RenderPage("AI Center")));
+  src\Nexus.App\MainWindow.axaml.cs:1427:        ai.Child = aiStack; middle.Children.Add(ai);
+  src\Nexus.App\MainWindow.axaml.cs:1428:
+  src\Nexus.App\MainWindow.axaml.cs:1429:        var stats = GamingPanel("GAMING STATISTICS", "Session tracking is 
+not yet persisted");
+  src\Nexus.App\MainWindow.axaml.cs:1445:        var right = new StackPanel { Spacing = 10 };
+  src\Nexus.App\MainWindow.axaml.cs:1446:        var gpu = GamingPanel("GPU INFORMATION", "Hardware sensor 
+integration");
+> src\Nexus.App\MainWindow.axaml.cs:1447:        gpu.Children.Add(new TextBlock { Text = "GPU model", FontSize = 9, 
+Foreground = Brush("#8E94B7") });
+> src\Nexus.App\MainWindow.axaml.cs:1448:        gpu.Children.Add(new TextBlock { Text = "Not detected by current 
+NEXUS sensor service", FontSize = 11, FontWeight = FontWeight.SemiBold, Foreground = Brush("#E8E9F7"), TextWrapping = 
+TextWrapping.Wrap });
+> src\Nexus.App\MainWindow.axaml.cs:1449:        gpu.Children.Add(new TextBlock { Text = "Driver Â· VRAM Â· 
+temperature Â· fan Â· power", FontSize = 9, Foreground = Brush("#8E94B7"), TextWrapping = TextWrapping.Wrap });
+  src\Nexus.App\MainWindow.axaml.cs:1450:        gpu.Children.Add(ActionButton("Open hardware status", "secondary", 
+(_, _) => RenderPage("System Center")));
+  src\Nexus.App\MainWindow.axaml.cs:1451:        right.Children.Add(gpu);
+  src\Nexus.App\MainWindow.axaml.cs:1452:
+  src\Nexus.App\MainWindow.axaml.cs:1453:        var activity = GamingPanel("RECENT ACTIVITY", "Local, verifiable 
+state");
+  src\Nexus.App\MainWindow.axaml.cs:1459:
+  src\Nexus.App\MainWindow.axaml.cs:1460:        var network = GamingPanel("NETWORK CENTER", "Diagnostics, not 
+game-server ping");
+> src\Nexus.App\MainWindow.axaml.cs:1461:        network.Children.Add(new TextBlock { Text = 
+NetworkInterface.GetIsNetworkAvailable() ? "Network interface: available" : "Network interface: unavailable", 
+FontSize = 11, Foreground = Brush(NetworkInterface.GetIsNetworkAvailable() ? "#4ADE80" : "#FBBF24") });
+  src\Nexus.App\MainWindow.axaml.cs:1462:        network.Children.Add(ActionButton("Open network diagnostics", 
+"secondary", (_, _) => RenderPage("Network")));
+  src\Nexus.App\MainWindow.axaml.cs:1463:        right.Children.Add(network);
+  src\Nexus.App\MainWindow.axaml.cs:1464:
+  src\Nexus.App\MainWindow.axaml.cs:1465:        var optional = GamingPanel("OPTIONAL WIDGETS", "Configure available 
+workspace modules");
+  src\Nexus.App\MainWindow.axaml.cs:1486:        var bottom = new Grid { ColumnDefinitions = new 
+ColumnDefinitions("1.2*,1*,1*"), ColumnSpacing = 10 };
+  src\Nexus.App\MainWindow.axaml.cs:1487:        var capture = GamingPanel("CAPTURE CENTER", "Optional Â· not 
+connected");
+> src\Nexus.App\MainWindow.axaml.cs:1488:        capture.Children.Add(new TextBlock { Text = "Screenshot/recording 
+discovery and capture controls are not implemented in this build.", FontSize = 10, Foreground = Brush("#A6A8BD"), 
+TextWrapping = TextWrapping.Wrap });
+  src\Nexus.App\MainWindow.axaml.cs:1489:        capture.Children.Add(ActionButton("Capture status", "secondary", (_, 
+_) => ShowNotice("Capture Center is not connected yet. No recording or screenshot is claimed.")));
+  src\Nexus.App\MainWindow.axaml.cs:1490:        var mods = GamingPanel("MODS MANAGER", "Optional Â· safe by 
+default");
+> src\Nexus.App\MainWindow.axaml.cs:1491:        mods.Children.Add(new TextBlock { Text = "Mod folders and 
+compatibility are game-specific. No unknown installer is executed.", FontSize = 10, Foreground = Brush("#A6A8BD"), 
+TextWrapping = TextWrapping.Wrap });
+  src\Nexus.App\MainWindow.axaml.cs:1492:        mods.Children.Add(ActionButton("Mod manager status", "secondary", 
+(_, _) => ShowNotice("Mods Manager is planned. No mod files have been changed.")));
+  src\Nexus.App\MainWindow.axaml.cs:1493:        var display = GamingPanel("DISPLAY & INPUT", "Read-only shortcuts");
+> src\Nexus.App\MainWindow.axaml.cs:1494:        display.Children.Add(new TextBlock { Text = "Display changes, 
+controller remapping and audio routing are not applied by this dashboard.", FontSize = 10, Foreground = 
+Brush("#A6A8BD"), TextWrapping = TextWrapping.Wrap });
+  src\Nexus.App\MainWindow.axaml.cs:1495:        display.Children.Add(ActionButton("Open system center", "secondary", 
+(_, _) => RenderPage("System Center")));
+  src\Nexus.App\MainWindow.axaml.cs:1496:        bottom.Children.Add(capture); Grid.SetColumn(mods, 1); 
+bottom.Children.Add(mods); Grid.SetColumn(display, 2); bottom.Children.Add(display);
+  src\Nexus.App\MainWindow.axaml.cs:1497:        Grid.SetColumnSpan(bottom, 3); Grid.SetRow(bottom, 1); 
+root.Children.Add(bottom);
+  src\Nexus.App\MainWindow.axaml.cs:1498:
+> src\Nexus.App\MainWindow.axaml.cs:1499:        var footer = new TextBlock { Text = "NEXUS GAMING  /  LOCAL-FIRST  / 
+ HARDWARE TELEMETRY REQUIRES A VALIDATED PROVIDER", FontSize = 9, Foreground = Brush("#626B91"), Margin = new 
+Thickness(2, 4, 2, 0), TextWrapping = TextWrapping.Wrap };
+  src\Nexus.App\MainWindow.axaml.cs:1500:        Grid.SetColumnSpan(footer, 3); Grid.SetRow(footer, 2); 
+root.Children.Add(footer);
+  src\Nexus.App\MainWindow.axaml.cs:1501:
+  src\Nexus.App\MainWindow.axaml.cs:1502:        // Responsive dashboard: retain the reference's three-column command 
+center on
+  src\Nexus.App\MainWindow.axaml.cs:1503:        // wide windows, then reflow into two columns instead of 
+squeezing/overlapping
+  src\Nexus.App\MainWindow.axaml.cs:1544:    {
+  src\Nexus.App\MainWindow.axaml.cs:1545:        var panel = new CardPanel(title) { Padding = new Thickness(12), 
+CornerRadius = new CornerRadius(11), Margin = new Thickness(0) };
+> src\Nexus.App\MainWindow.axaml.cs:1546:        panel.Children.Add(new TextBlock { Text = subtitle, FontSize = 9, 
+Foreground = Brush("#7F89B4"), TextWrapping = TextWrapping.Wrap, Margin = new Thickness(0, -4, 0, 2) });
+  src\Nexus.App\MainWindow.axaml.cs:1547:        return panel;
+  src\Nexus.App\MainWindow.axaml.cs:1548:    }
+  src\Nexus.App\MainWindow.axaml.cs:1549:
+  src\Nexus.App\MainWindow.axaml.cs:1550:    private static Border GamingMetric(string label, string value, string 
+caption, string accent)
+  src\Nexus.App\MainWindow.axaml.cs:1551:    {
+  src\Nexus.App\MainWindow.axaml.cs:1552:        var stack = new StackPanel { Spacing = 4 };
+> src\Nexus.App\MainWindow.axaml.cs:1553:        stack.Children.Add(new TextBlock { Text = label, FontSize = 8, 
+FontWeight = FontWeight.Bold, Foreground = Brush("#7F89B4"), TextWrapping = TextWrapping.Wrap });
+> src\Nexus.App\MainWindow.axaml.cs:1554:        stack.Children.Add(new TextBlock { Text = value, FontSize = 15, 
+FontWeight = FontWeight.Bold, Foreground = Brush(accent), TextWrapping = TextWrapping.Wrap });
+> src\Nexus.App\MainWindow.axaml.cs:1555:        stack.Children.Add(new TextBlock { Text = caption, FontSize = 8, 
+Foreground = Brush("#A3A9C7"), TextWrapping = TextWrapping.Wrap });
+  src\Nexus.App\MainWindow.axaml.cs:1556:        return new Border { Background = Brush("#0A1022"), BorderBrush = 
+Brush("#252D54"), BorderThickness = new Thickness(1), CornerRadius = new CornerRadius(8), Padding = new Thickness(8), 
+Margin = new Thickness(2), Child = stack };
+  src\Nexus.App\MainWindow.axaml.cs:1557:    }
+  src\Nexus.App\MainWindow.axaml.cs:1558:
+  src\Nexus.App\MainWindow.axaml.cs:1559:    private static Border ActivityRow(string title, string detail, string 
+accent)
+  src\Nexus.App\MainWindow.axaml.cs:1562:        grid.Children.Add(new Border { Background = Brush(accent), 
+CornerRadius = new CornerRadius(2), Margin = new Thickness(0, 2) });
+  src\Nexus.App\MainWindow.axaml.cs:1563:        var text = new StackPanel { Spacing = 2, Margin = new Thickness(8, 
+0, 0, 0) };
+> src\Nexus.App\MainWindow.axaml.cs:1564:        text.Children.Add(new TextBlock { Text = title, FontSize = 10, 
+FontWeight = FontWeight.SemiBold, Foreground = Brush("#E4E7FA") });
+> src\Nexus.App\MainWindow.axaml.cs:1565:        text.Children.Add(new TextBlock { Text = detail, FontSize = 9, 
+Foreground = Brush("#929BBC"), TextWrapping = TextWrapping.Wrap });
+  src\Nexus.App\MainWindow.axaml.cs:1566:        Grid.SetColumn(text, 1); grid.Children.Add(text);
+  src\Nexus.App\MainWindow.axaml.cs:1567:        return new Border { Child = grid, Padding = new Thickness(0, 4) };
+  src\Nexus.App\MainWindow.axaml.cs:1568:    }
+  src\Nexus.App\MainWindow.axaml.cs:1569:
+  src\Nexus.App\MainWindow.axaml.cs:1580:            foreach (var game in games.Where(g => g.Name.Contains(query, 
+StringComparison.OrdinalIgnoreCase)).Take(300))
+  src\Nexus.App\MainWindow.axaml.cs:1581:            {
+> src\Nexus.App\MainWindow.axaml.cs:1582:                list.Children.Add(new Border { Background = 
+Brush("#10162B"), BorderBrush = Brush("#252D54"), BorderThickness = new Thickness(1), CornerRadius = new 
+CornerRadius(7), Padding = new Thickness(10), Child = new StackPanel { Spacing = 3, Children = { new TextBlock { Text 
+= game.Name, FontSize = 12, FontWeight = FontWeight.SemiBold, Foreground = Brush("#F0F2FF") }, new TextBlock { Text = 
+$"Source: {game.Source} Â· detected only; executable path not verified", FontSize = 9, Foreground = Brush("#929BBC"), 
+TextWrapping = TextWrapping.Wrap } } } });
+  src\Nexus.App\MainWindow.axaml.cs:1583:            }
+  src\Nexus.App\MainWindow.axaml.cs:1584:        }
+  src\Nexus.App\MainWindow.axaml.cs:1585:        search.TextChanged += (_, _) => Refresh();
+  src\Nexus.App\MainWindow.axaml.cs:1586:        content.Children.Add(search);
+  src\Nexus.App\MainWindow.axaml.cs:1753:    {
+  src\Nexus.App\MainWindow.axaml.cs:1754:        var panel = new StackPanel { Spacing = 8 };
+> src\Nexus.App\MainWindow.axaml.cs:1755:        panel.Children.Add(new TextBlock { Text = title, FontSize = 20, 
+FontWeight = FontWeight.SemiBold, Foreground = Brush("#F5F5FA") });
+> src\Nexus.App\MainWindow.axaml.cs:1756:        panel.Children.Add(new TextBlock { Text = subtitle, FontSize = 13, 
+Foreground = Brush("#9295AC"), TextWrapping = TextWrapping.Wrap, MaxWidth = 950 });
+  src\Nexus.App\MainWindow.axaml.cs:1757:        return new Border { Background = Brushes.Transparent, Padding = new 
+Thickness(0, 0, 0, 2), Child = panel };
+  src\Nexus.App\MainWindow.axaml.cs:1758:    }
+  src\Nexus.App\MainWindow.axaml.cs:1759:
+  src\Nexus.App\MainWindow.axaml.cs:1760:    private static CardPanel Card(string title) => new(title);
+  src\Nexus.App\MainWindow.axaml.cs:1774:            Margin = new Thickness(0, 0, 0, 14);
+  src\Nexus.App\MainWindow.axaml.cs:1775:            BoxShadow = BoxShadows.Parse("0 10 34 #38000000");
+> src\Nexus.App\MainWindow.axaml.cs:1776:            _content.Children.Add(new TextBlock { Text = title, FontSize = 
+15, FontWeight = FontWeight.Bold, Foreground = Brush("#F4F5FB"), Margin = new Thickness(0, 0, 0, 2) });
+  src\Nexus.App\MainWindow.axaml.cs:1777:            Child = _content;
+  src\Nexus.App\MainWindow.axaml.cs:1778:        }
+  src\Nexus.App\MainWindow.axaml.cs:1779:    }
+  src\Nexus.App\MainWindow.axaml.cs:1780:
+  src\Nexus.App\MainWindow.axaml.cs:1782:    {
+  src\Nexus.App\MainWindow.axaml.cs:1783:        var content = new StackPanel { Spacing = 8 };
+> src\Nexus.App\MainWindow.axaml.cs:1784:        content.Children.Add(new TextBlock { Text = label, FontSize = 10, 
+FontWeight = FontWeight.Bold, Foreground = Brush("#8588A1") });
+> src\Nexus.App\MainWindow.axaml.cs:1785:        content.Children.Add(new TextBlock { Text = value, FontSize = 27, 
+FontWeight = FontWeight.Bold, Foreground = Brush(accent) });
+> src\Nexus.App\MainWindow.axaml.cs:1786:        content.Children.Add(new TextBlock { Text = caption, FontSize = 11, 
+Foreground = Brush("#9295AC"), TextWrapping = TextWrapping.Wrap });
+  src\Nexus.App\MainWindow.axaml.cs:1787:        return new Border { Background = Brush("#151622"), BorderBrush = 
+Brush("#292A40"), BorderThickness = new Thickness(1), CornerRadius = new CornerRadius(13), Padding = new 
+Thickness(17), Margin = new Thickness(0, 0, 12, 12), Child = content, Width = 220, MinHeight = 120 };
+  src\Nexus.App\MainWindow.axaml.cs:1788:    }
+  src\Nexus.App\MainWindow.axaml.cs:1789:
+  src\Nexus.App\MainWindow.axaml.cs:1790:    private static void AddText(CardPanel panel, string text, double size, 
+string color, double left, double top, bool wrap)
+  src\Nexus.App\MainWindow.axaml.cs:1791:    {
+> src\Nexus.App\MainWindow.axaml.cs:1792:        panel.Children.Add(new TextBlock { Text = text, FontSize = size, 
+Foreground = Brush(color), Margin = new Thickness(left, top, 0, 0), TextWrapping = wrap ? TextWrapping.Wrap : 
+TextWrapping.NoWrap });
+  src\Nexus.App\MainWindow.axaml.cs:1793:    }
+  src\Nexus.App\MainWindow.axaml.cs:1794:
+  src\Nexus.App\MainWindow.axaml.cs:1795:    private static Button ActionButton(string text, string style, 
+EventHandler<Avalonia.Interactivity.RoutedEventArgs> click)
+  src\Nexus.App\MainWindow.axaml.cs:1796:    {
+  src\Nexus.App\MainWindow.axaml.cs:1829:        var dialog = new Window { Title = title, Width = 480, SizeToContent 
+= SizeToContent.Height, CanResize = false, WindowStartupLocation = WindowStartupLocation.CenterOwner, Background = 
+Brush("#11121C") };
+  src\Nexus.App\MainWindow.axaml.cs:1830:        var stack = new StackPanel { Spacing = 14 };
+> src\Nexus.App\MainWindow.axaml.cs:1831:        stack.Children.Add(new TextBlock { Text = title, FontSize = 18, 
+FontWeight = FontWeight.SemiBold, Foreground = Brush("#F4F5FA") });
+> src\Nexus.App\MainWindow.axaml.cs:1832:        stack.Children.Add(new TextBlock { Text = message, FontSize = 13, 
+Foreground = Brush("#C4C6D7"), TextWrapping = TextWrapping.Wrap });
+> src\Nexus.App\MainWindow.axaml.cs:1833:        if (irreversible) stack.Children.Add(new TextBlock { Text = 
+"IRREVERSIBLE ACTION â€” review the exact target before continuing.", FontSize = 11, FontWeight = FontWeight.Bold, 
+Foreground = Brush("#FB7185"), TextWrapping = TextWrapping.Wrap });
+  src\Nexus.App\MainWindow.axaml.cs:1834:        var buttons = new StackPanel { Orientation = Orientation.Horizontal, 
+HorizontalAlignment = HorizontalAlignment.Right, Spacing = 9 };
+  src\Nexus.App\MainWindow.axaml.cs:1835:        var cancel = ActionButton("Cancel", "secondary", (_, _) => 
+dialog.Close(false));
+  src\Nexus.App\MainWindow.axaml.cs:1836:        var approve = ActionButton(irreversible ? "Delete permanently" : 
+"Continue", "primary", (_, _) => dialog.Close(true));
+  src\Nexus.App\MainWindow.axaml.cs:1837:        buttons.Children.Add(cancel); buttons.Children.Add(approve); 
+stack.Children.Add(buttons);
+  src\Nexus.App\MainWindow.axaml.cs:1844:        var dialog = new Window { Title = "NEXUS", Width = 500, 
+SizeToContent = SizeToContent.Height, CanResize = false, WindowStartupLocation = WindowStartupLocation.CenterOwner, 
+Background = Brush("#11121C") };
+  src\Nexus.App\MainWindow.axaml.cs:1845:        var stack = new StackPanel { Spacing = 15 };
+> src\Nexus.App\MainWindow.axaml.cs:1846:        stack.Children.Add(new TextBlock { Text = message, FontSize = 13, 
+Foreground = Brush("#E7E8F2"), TextWrapping = TextWrapping.Wrap });
+  src\Nexus.App\MainWindow.axaml.cs:1847:        var ok = ActionButton("OK", "primary", (_, _) => 
+dialog.Close(true)); ok.HorizontalAlignment = HorizontalAlignment.Right; stack.Children.Add(ok);
+  src\Nexus.App\MainWindow.axaml.cs:1848:        dialog.Content = new Border { Padding = new Thickness(22), Child = 
+stack };
+  src\Nexus.App\MainWindow.axaml.cs:1849:        await dialog.ShowDialog<bool>(this);
+  src\Nexus.App\MainWindow.axaml.cs:1850:    }
+
+

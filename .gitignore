@@ -1,0 +1,65 @@
+**/bin/
+**/obj/
+.vs/
+.vscode/
+*.user
+*.suo
+*.db
+*.db-shm
+*.db-wal
+*.log
+artifacts/
+
+deploy/.env
+
+load-tests/results/
+
+*.k6.json
+load-tests/test-tokens.json
+
+# Local configuration and secrets
+.env
+.env.*
+!.env.example
+**/appsettings.Local.json
+**/appsettings.Development.json
+**/secrets.json
+**/*secret*
+**/*credentials*
+
+# Local databases and user data
+*.sqlite
+*.sqlite3
+data/
+userdata/
+user-data/
+
+# Backups and temporary files
+*.backup
+*.backup-*
+*.bak
+*.old
+*.tmp
+*.orig
+
+# Build and release output
+publish/
+releases/
+TestResults/
+coverage/
+*.msi
+*.pdb
+
+# Local AI models
+*.gguf
+*.safetensors
+*.onnx
+
+# IDE and OS files
+.idea/
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Legacy Python prototypes
+legacy-preserved-*.py

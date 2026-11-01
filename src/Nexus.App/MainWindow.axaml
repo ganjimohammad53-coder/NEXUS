@@ -1,0 +1,116 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        x:Class="Nexus.App.MainWindow"
+        Title="NEXUS - Gaming Command Center"
+        Width="1280" Height="850" MinWidth="1024" MinHeight="680"
+        WindowStartupLocation="CenterScreen">
+  <Grid x:Name="RootLayout" ColumnDefinitions="196,*" RowDefinitions="*" Background="#090A10">
+    <Border x:Name="SidebarSurface" Grid.Column="0" BorderBrush="#232538" BorderThickness="0,0,1,0">
+      <Border.Background>
+        <LinearGradientBrush StartPoint="0%,0%" EndPoint="0%,100%">
+          <GradientStop Color="#12131F" Offset="0" />
+          <GradientStop Color="#0B0C14" Offset="1" />
+        </LinearGradientBrush>
+      </Border.Background>
+      <Grid RowDefinitions="Auto,Auto,*,Auto" Margin="16,20,16,16">
+        <StackPanel Grid.Row="0" Orientation="Horizontal" Spacing="11" Margin="4,2,0,26">
+          <Border Width="44" Height="44" CornerRadius="15" VerticalAlignment="Center" BoxShadow="0 6 30 #708B5CF6">
+            <Border.Background>
+              <LinearGradientBrush StartPoint="0%,0%" EndPoint="100%,100%">
+                <GradientStop Color="#A78BFA" Offset="0" />
+                <GradientStop Color="#5B21B6" Offset="1" />
+              </LinearGradientBrush>
+            </Border.Background>
+            <Canvas Width="44" Height="44">
+              <Path Data="M 13.2,30.8 L 13.2,13.2 L 30.8,30.8 L 30.8,13.2"
+                    Stroke="#0A0A0F" StrokeThickness="3.3"
+                    StrokeLineCap="Round" StrokeJoin="Round" />
+              <Ellipse Width="6.6" Height="6.6" Fill="#FFFFFF" Canvas.Left="9.9" Canvas.Top="9.9" />
+              <Ellipse Width="6.6" Height="6.6" Fill="#0A0A0F" Canvas.Left="9.9" Canvas.Top="27.5" />
+              <Ellipse Width="6.6" Height="6.6" Fill="#FFFFFF" Canvas.Left="27.5" Canvas.Top="27.5" />
+              <Ellipse Width="6.6" Height="6.6" Fill="#0A0A0F" Canvas.Left="27.5" Canvas.Top="9.9" />
+            </Canvas>
+          </Border>
+          <StackPanel x:Name="BrandTextStack" VerticalAlignment="Center" Spacing="1">
+            <StackPanel Orientation="Horizontal" Spacing="5">
+              <TextBlock Text="NEXUS" FontSize="19" FontWeight="Bold" LetterSpacing="1.5" />
+              
+            </StackPanel>
+            <TextBlock Text="PLAY  |  OPTIMIZE  |  CREATE" FontSize="8" Foreground="#9EA2B8" LetterSpacing="2" />
+          </StackPanel>
+        </StackPanel>
+        <TextBlock Grid.Row="1" Text="YOUR WORKSPACE" FontSize="10" FontWeight="Bold" Foreground="#8187A5" Margin="9,0,0,9" />
+        <ScrollViewer Grid.Row="2" VerticalScrollBarVisibility="Auto">
+          <StackPanel x:Name="NavigationPanel" Spacing="4">
+            <Button Classes="nav" Tag="Dashboard" Click="NavigationClick"><StackPanel Orientation="Horizontal" Spacing="12"><PathIcon Width="19" Height="19" Foreground="#B6A0FF" Data="M3,3 H10 V10 H3 Z M14,3 H21 V10 H14 Z M3,14 H10 V21 H3 Z M14,14 H21 V21 H14 Z"/><TextBlock VerticalAlignment="Center" Text="Overview"/></StackPanel></Button>
+            <Button Classes="nav" Tag="AI Center" Click="NavigationClick"><StackPanel Orientation="Horizontal" Spacing="12"><PathIcon Width="19" Height="19" Foreground="#B6A0FF" Data="M12,2 L14,9 L21,12 L14,14 L12,21 L10,14 L3,12 L10,9 Z"/><TextBlock VerticalAlignment="Center" Text="AI Center"/></StackPanel></Button>
+            <Button Classes="nav" Tag="System Center" Click="NavigationClick"><StackPanel Orientation="Horizontal" Spacing="12"><PathIcon Width="19" Height="19" Foreground="#B6A0FF" Data="M7,4 H17 V8 H21 V16 H17 V20 H7 V16 H3 V8 H7 Z M9,9 H15 V15 H9 Z"/><TextBlock VerticalAlignment="Center" Text="System &amp; Hardware"/></StackPanel></Button>
+            <Button Classes="nav" Tag="Peripheral Center" Click="NavigationClick"><StackPanel Orientation="Horizontal" Spacing="12"><PathIcon Width="19" Height="19" Foreground="#B6A0FF" Data="M7,3 H17 V7 H7 Z M5,9 H19 V21 H5 Z M9,12 V17 M15,12 V17"/><TextBlock VerticalAlignment="Center" Text="Peripherals"/></StackPanel></Button>
+            <Button Classes="nav" Tag="File Manager" Click="NavigationClick"><StackPanel Orientation="Horizontal" Spacing="12"><PathIcon Width="19" Height="19" Foreground="#B6A0FF" Data="M3,6 H10 L12,9 H21 V19 H3 Z"/><TextBlock VerticalAlignment="Center" Text="File Manager"/></StackPanel></Button>
+            <Button Classes="nav" Tag="Productivity" Click="NavigationClick"><StackPanel Orientation="Horizontal" Spacing="12"><PathIcon Width="19" Height="19" Foreground="#B6A0FF" Data="M5,3 H19 V21 H5 Z M8,8 L10,10 L13,6 M8,15 L10,17 L13,13"/><TextBlock VerticalAlignment="Center" Text="Productivity &amp; Tasks"/></StackPanel></Button>
+            <Button Classes="nav" Tag="Security" Click="NavigationClick"><StackPanel Orientation="Horizontal" Spacing="12"><PathIcon Width="19" Height="19" Foreground="#B6A0FF" Data="M12,2 L20,5 V11 C20,16 16,20 12,22 C8,20 4,16 4,11 V5 Z M8,12 L11,15 L16,9"/><TextBlock VerticalAlignment="Center" Text="Security &amp; Backup"/></StackPanel></Button>
+            <Button Classes="nav" Tag="Automation" Click="NavigationClick"><StackPanel Orientation="Horizontal" Spacing="12"><PathIcon Width="19" Height="19" Foreground="#B6A0FF" Data="M4,4 H9 V9 H4 Z M15,15 H20 V20 H15 Z M15,3 H20 V8 H15 Z M9,6 H12 V17 H15"/><TextBlock VerticalAlignment="Center" Text="Automation"/></StackPanel></Button>
+            <Button Classes="nav" Tag="Gaming" Click="NavigationClick"><StackPanel Orientation="Horizontal" Spacing="12"><PathIcon Width="19" Height="19" Foreground="#B6A0FF" Data="M7,8 H17 C20,8 21,11 22,16 C22,19 20,20 18,18 L15,15 H9 L6,18 C4,20 2,19 2,16 C3,11 4,8 7,8 Z M7,11 V15 M5,13 H9 M16,12 H16.1 M19,15 H19.1"/><TextBlock VerticalAlignment="Center" Text="Gaming Center"/></StackPanel></Button>
+            <Button Classes="nav" Tag="Network" Click="NavigationClick"><StackPanel Orientation="Horizontal" Spacing="12"><PathIcon Width="19" Height="19" Foreground="#B6A0FF" Data="M12,3 A3,3 0 1 0 12.1,3 M4,16 A3,3 0 1 0 4.1,16 M20,16 A3,3 0 1 0 20.1,16 M10,6 L6,13 M14,6 L18,13 M7,16 H17"/><TextBlock VerticalAlignment="Center" Text="Network Center"/></StackPanel></Button>
+            <Button Classes="nav" Tag="Customization" Click="NavigationClick"><StackPanel Orientation="Horizontal" Spacing="12"><PathIcon Width="19" Height="19" Foreground="#B6A0FF" Data="M12,3 C7,3 3,7 3,12 C3,17 7,21 12,21 H15 C17,21 18,19 18,17 C18,16 17,15 17,14 H19 C21,14 21,12 21,11 C21,6 17,3 12,3 Z M8,10 A1,1 0 1 0 8.1,10 M12,7 A1,1 0 1 0 12.1,7 M16,10 A1,1 0 1 0 16.1,10"/><TextBlock VerticalAlignment="Center" Text="Customization &amp; Plugins"/></StackPanel></Button>
+          </StackPanel>
+        </ScrollViewer>
+        <Border x:Name="SidebarFooter" Grid.Row="3" Background="#161828" BorderBrush="#2B2E45" BorderThickness="1" CornerRadius="14" Padding="13" Margin="0,16,0,0">
+          <StackPanel Spacing="6">
+            <StackPanel Orientation="Horizontal" Spacing="7">
+              <Ellipse Width="7" Height="7" Fill="#4ADE80" VerticalAlignment="Center" />
+              <TextBlock Text="LOCAL-FIRST MODE" FontSize="10" FontWeight="Bold" Foreground="#D7D9E8" />
+            </StackPanel>
+            <TextBlock x:Name="SidebarPrivacyText" Text="PRIVATE BY DESIGN. AI runs locally. Web search requires explicit confirmation for each query." FontSize="10" Foreground="#8C8FA7" TextWrapping="Wrap" LineHeight="15" />
+            <Button Classes="nav" Tag="Settings" Click="NavigationClick" Margin="-6,5,-6,-5"><StackPanel Orientation="Horizontal" Spacing="12"><PathIcon Width="19" Height="19" Foreground="#B6A0FF" Data="M12,3 V5 M12,19 V21 M3,12 H5 M19,12 H21 M5.6,5.6 L7,7 M17,17 L18.4,18.4 M18.4,5.6 L17,7 M7,17 L5.6,18.4 M12,7 A5,5 0 1 0 12.1,7"/><TextBlock VerticalAlignment="Center" Text="Settings"/></StackPanel></Button>
+            <Button Classes="nav" Tag="About" Click="NavigationClick" Margin="-6,0,-6,-5">
+              <StackPanel Orientation="Horizontal" Spacing="12">
+                <PathIcon Width="19" Height="19" Foreground="#B6A0FF" Data="M12,3 A9,9 0 1 0 12.1,3 M12,10 V16 M12,7 V7.1"/>
+                <TextBlock VerticalAlignment="Center" Text="About NEXUS"/>
+              </StackPanel>
+            </Button>
+          </StackPanel>
+        </Border>
+      </Grid>
+    </Border>
+    <Grid Grid.Column="1" RowDefinitions="Auto,*">
+      <Grid.Background>
+        <RadialGradientBrush Center="85%,0%" GradientOrigin="85%,0%" RadiusX="85%" RadiusY="70%">
+          <GradientStop Color="#2A1F55" Offset="0" />
+          <GradientStop Color="#0F0D1F" Offset="0.45" />
+          <GradientStop Color="#07080D" Offset="1" />
+        </RadialGradientBrush>
+      </Grid.Background>
+      <Border x:Name="HeaderSurface" Grid.Row="0" Background="#D9080D20" BorderBrush="#292C55" BorderThickness="0,0,0,1" Padding="16,9">
+        <Grid ColumnDefinitions="*,Auto,Auto" ColumnSpacing="12">
+          <StackPanel Spacing="2" VerticalAlignment="Center" IsVisible="False">
+            <TextBlock x:Name="BreadcrumbText" Text="NEXUS  /  WORKSPACE" FontSize="9" FontWeight="Bold" Foreground="#7D8298" LetterSpacing="1.3" />
+            <TextBlock x:Name="PageTitleText" Text="Your command center" FontSize="20" FontWeight="Bold" LetterSpacing="-0.4" />
+          </StackPanel>
+          <Border Grid.Column="0" Background="#080D20" BorderBrush="#343A78" BorderThickness="1" CornerRadius="10" Padding="12,7" MaxWidth="650" HorizontalAlignment="Stretch">
+            <Grid ColumnDefinitions="Auto,*,Auto" ColumnSpacing="9">
+              <Path Width="20" Height="20" Stroke="#B6B8F8" StrokeThickness="2" StrokeLineCap="Round" Fill="Transparent" VerticalAlignment="Center" Data="M10,3 A7,7 0 1 0 10.1,3 M15,15 L21,21" />
+              <TextBox x:Name="GlobalSearchInput" Grid.Column="1" Watermark="Search games, apps, profiles, settings..." Background="Transparent" BorderThickness="0" Foreground="#F1F3FF" FontSize="11" VerticalContentAlignment="Center" />
+              <Border Grid.Column="2" Background="#171D3B" CornerRadius="5" Padding="7,3" VerticalAlignment="Center">
+                <TextBlock Text="Ctrl  K" FontSize="9" Foreground="#A6ACD1" />
+              </Border>
+            </Grid>
+          </Border>
+          <StackPanel Grid.Column="1" Orientation="Horizontal" Spacing="8" VerticalAlignment="Center">
+            <Border Background="#171B38" BorderBrush="#353B70" BorderThickness="1" CornerRadius="16" Padding="9,5">
+              <TextBlock Text="NEXUS 1.0" FontSize="9" FontWeight="Bold" Foreground="#C4B5FD" />
+            </Border>
+          </StackPanel>
+          <StackPanel Grid.Column="2" Spacing="1" VerticalAlignment="Center" HorizontalAlignment="Right">
+            <TextBlock Text="NEXUS" FontSize="17" FontWeight="Bold" Foreground="#F2F3FF" />
+            <TextBlock Text="LOCAL-FIRST" FontSize="8" Foreground="#7E8AB5" HorizontalAlignment="Right" />
+          </StackPanel>
+        </Grid>
+      </Border>
+      <ScrollViewer Grid.Row="1" VerticalScrollBarVisibility="Auto">
+        <StackPanel x:Name="PageHost" Margin="10,10,10,14" Spacing="10" />
+      </ScrollViewer>
+    </Grid>
+  </Grid>
+</Window>
+
